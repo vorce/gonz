@@ -3,7 +3,7 @@ defmodule Gonz.Markdown do
 
   defstruct content: "",
             front_matter: "",
-            file_name: ""
+            filename: ""
 
   def parse(files, dir) when is_list(files) do
     result = Enum.map(files, fn file -> parse(file, dir) end)
@@ -22,7 +22,7 @@ defmodule Gonz.Markdown do
       %__MODULE__{
         content: content,
         front_matter: fm,
-        file_name: file
+        filename: file
       }
     end
   end

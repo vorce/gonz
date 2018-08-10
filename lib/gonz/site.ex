@@ -7,9 +7,10 @@ defmodule Gonz.Site do
   def new(name) do
     with :ok <- create_default_theme(name),
          :ok <- create_content_dirs(),
-         :ok <- Gonz.Page.create("About"),
+         :ok <- Gonz.Page.create("About", nav_item?: true),
+         :ok <- Gonz.Page.create("Somepage"),
          :ok <- Gonz.Post.create("Hello #{name}"),
-         :ok <- File.write("./site.yml", Gonz.Template.config(name)) do
+         :ok <- File.write("./site.yml", Gonz.Bootstrap.config(name)) do
       update_gitignore()
     end
   end
@@ -40,7 +41,7 @@ defmodule Gonz.Site do
       |> Enum.all?(fn return_val -> return_val == :ok end)
 
     if all_dirs_created? do
-      File.write("#{theme_dir}/#{theme_name}/assets/css/base.css", Gonz.Template.base_css())
+      File.write("#{theme_dir}/#{theme_name}/assets/css/base.css", Gonz.Bootstrap.base_css())
     else
       {:error, "Unable to create asset directories for theme: #{theme_name}"}
     end
@@ -51,11 +52,12 @@ defmodule Gonz.Site do
     layout_dir = "#{theme_dir}/#{theme_name}/layout"
 
     with _ <- IO.puts("Creating layout directory and templates: #{layout_dir}"),
-         :ok <- File.mkdir_p("#{theme_dir}/#{theme_name}/layout"),
-         :ok <- File.write("#{layout_dir}/post.eex", Gonz.Template.post_template()),
-         :ok <- File.write("#{layout_dir}/layout.eex", Gonz.Template.layout(project_name)),
-         :ok <- File.write("#{layout_dir}/index.eex", Gonz.Template.index()) do
-      File.write("#{layout_dir}/page.eex", Gonz.Template.page_template())
+         :ok <- File.mkdir_p("#{layout_dir}"),
+         :ok <- File.write("#{layout_dir}/post.eex", Gonz.Bootstrap.post_template()),
+         :ok <- File.write("#{layout_dir}/layout.eex", Gonz.Bootstrap.layout_template(project_name)),
+         :ok <- File.write("#{layout_dir}/navigation.eex", Gonz.Bootstrap.navigation_template()),
+         :ok <- File.write("#{layout_dir}/index.eex", Gonz.Bootstrap.index_template()) do
+      File.write("#{layout_dir}/page.eex", Gonz.Bootstrap.page_template())
     end
   end
 

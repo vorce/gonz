@@ -4,6 +4,6 @@ defmodule Gonz.Post do
   """
 
   def create(title) do
-    File.write(Gonz.Site.filename_from_title("posts", title), Gonz.Template.post(title))
+    File.write(Gonz.Site.filename_from_title("posts", title), Gonz.Bootstrap.post(title))
   end
 end

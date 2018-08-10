@@ -9,6 +9,7 @@ defmodule Mix.Tasks.Gonz.Build do
   def run([]), do: run(["default"])
 
   def run([theme_name]) do
+    IO.puts("Building site with theme: #{theme_name}")
     Application.ensure_all_started(:yaml_elixir)
 
     {microseconds, _} =
@@ -37,6 +38,6 @@ defmodule Mix.Tasks.Gonz.Build do
 
   def build_index_page(theme_name) do
     IO.puts("Building index page...")
-    Gonz.Build.index()
+    Gonz.Build.index(theme_name)
   end
 end

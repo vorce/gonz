@@ -1,4 +1,4 @@
-defmodule Gonz.Template do
+defmodule Gonz.Bootstrap do
   @moduledoc """
   Project template
   """
@@ -16,7 +16,7 @@ defmodule Gonz.Template do
     """
   end
 
-  def post_template do
+  def post_template() do
     """
     <div id="post">
       <h2>
@@ -38,7 +38,7 @@ defmodule Gonz.Template do
     """
   end
 
-  def layout(name) do
+  def layout_template(name) do
     """
     <!DOCTYPE html>
     <html>
@@ -51,6 +51,9 @@ defmodule Gonz.Template do
       <body>
         <div class="container">
           <h1>#{name}</h1>
+
+          <%= @navigation %>
+
           <%= @content %>
         </div>
       </body>
@@ -71,22 +74,23 @@ defmodule Gonz.Template do
     """
   end
 
-  def index do
+  def index_template() do
     """
     <div class="index">
-      <%= Enum.map @content, fn(post) ->
+      <%= Enum.map @posts, fn post ->
         \"\"\"
-        #\{post.content}
+        <h2>#\{post.markdown.front_matter.title}</h2>
+        #\{post.html_content}
         <hr />
         \"\"\"
       end %>
-      <%= @prev %>
-      <%= @next %>
+      <%= @older %>
+      <%= @newer %>
     </div>
     """
   end
 
-  def page_template do
+  def page_template() do
     """
     <div id="page">
       <%= @front_matter.title %>
@@ -96,13 +100,37 @@ defmodule Gonz.Template do
     """
   end
 
-  def page(title) do
+  def page(title, opts) do
+    nav_item = Keyword.get(opts, :nav_item?, false)
+    description = Keyword.get(opts, :description, "A dull page")
+    content = Keyword.get(opts, :content, "This is the #{title} page")
+
     """
     ---
     title: #{title}
-    description: A new page
+    description: #{description}
+    nav_item: #{nav_item}
     ---
-    This is the #{title} page.
+    #{content}
+    """
+  end
+
+  def navigation_template() do
+    """
+    <div id="nav">
+      <ul>
+      <%= Enum.map(@items, fn item ->
+        url = if item.category == :index do
+          "#\{@href_prefix}#\{item.filename}"
+        else
+          "#\{@href_prefix}#\{item.category}/#\{item.filename}"
+        end
+        \"\"\"
+        <li><a href="#\{url}">#\{item.front_matter.title}</a></li>
+        \"\"\"
+      end) %>
+      </ul>
+    </div>
     """
   end
 end

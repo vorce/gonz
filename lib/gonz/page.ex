@@ -1,6 +1,6 @@
 defmodule Gonz.Page do
-  def create(title) do
-    File.write(Gonz.Site.filename_from_title("pages", title), Gonz.Template.page(title))
+  def create(title, opts \\ []) do
+    File.write(Gonz.Site.filename_from_title("pages", title), Gonz.Bootstrap.page(title, opts))
   end
 
   def template(theme_name) do

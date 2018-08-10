@@ -2,7 +2,7 @@
 
 > I can write anything and just put it in a zine, and then it's out there. It is like blogging but on paper. It is what I started to do before the computers were all popular.
 
-Static site generator. Heavily inspired by Obelisk.
+Static site generator. **Heavily** inspired by Obelisk (thanks for a great project!).
 
 Why create something new instead of using Obelisk, Serum, or Coil? Fun, learning, and flexibility.
 
@@ -21,9 +21,7 @@ end
     mix deps.get
     mix deps.compile
     mix gonz.new example
-    ...
     mix gonz.build
-    ...
     mix gonz.server
 
 Open http://localhost:4000 in your browser.
@@ -31,3 +29,8 @@ Open http://localhost:4000 in your browser.
 ## Adding content
 
 TODO
+
+Planned tasks:
+
+`mix gonz.post title`
+`mix gonz.page title`
