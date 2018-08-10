@@ -1,0 +1,13 @@
+{application,gonz,
+             [{applications,[kernel,stdlib,elixir,logger,earmark,cowboy,plug]},
+              {description,"gonz"},
+              {modules,['Elixir.Gonz','Elixir.Gonz.Build',
+                        'Elixir.Gonz.Document','Elixir.Gonz.Markdown',
+                        'Elixir.Gonz.Plug.Index','Elixir.Gonz.Plug.Server',
+                        'Elixir.Gonz.Post','Elixir.Gonz.Site',
+                        'Elixir.Gonz.Template','Elixir.Mix.Tasks.Gonz.Build',
+                        'Elixir.Mix.Tasks.Gonz.Help',
+                        'Elixir.Mix.Tasks.Gonz.New',
+                        'Elixir.Mix.Tasks.Gonz.Server']},
+              {registered,[]},
+              {vsn,"0.1.0"}]}.
