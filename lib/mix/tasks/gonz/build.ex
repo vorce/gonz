@@ -6,27 +6,36 @@ defmodule Mix.Tasks.Gonz.Build do
 
   @shortdoc "Build your gonz site"
 
-  def run(_args) do
-    {microseconds, _} = :timer.tc(fn ->
-      build_all_posts()
-      build_all_pages()
-      build_index_page()
-    end)
+  def run([]), do: run(["default"])
+
+  def run([theme_name]) do
+    Application.ensure_all_started(:yaml_elixir)
+
+    {microseconds, _} =
+      :timer.tc(fn ->
+        Gonz.Asset.copy(theme_name)
+        build_all_posts(theme_name)
+        build_all_pages(theme_name)
+        build_index_page(theme_name)
+      end)
+
     IO.puts("Build done, took: #{microseconds * 0.000001}s. Results in #{Gonz.Build.output_dir()}")
+    IO.puts("Run `mix gonz.server` to serve your site locally.")
+
     :ok
   end
 
-  def build_all_pages() do
+  def build_all_pages(theme_name) do
     IO.puts("Building pages...")
-    Gonz.Build.pages(:all)
+    Gonz.Build.pages(:all, theme_name)
   end
 
-  def build_all_posts() do
+  def build_all_posts(theme_name) do
     IO.puts("Building posts...")
     # Gonz.Build.posts(:all)
   end
 
-  def build_index_page() do
+  def build_index_page(theme_name) do
     IO.puts("Building index page...")
     Gonz.Build.index()
   end

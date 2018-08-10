@@ -20,7 +20,7 @@ defmodule Gonz.Template do
     """
     <div id="post">
       <h2>
-        <a href="<%= @filename %>"><%= @frontmatter.title %></a>
+        <a href="<%= @filename %>"><%= @front_matter.title %></a>
       </h2>
       <%= @content %>
     </div>
@@ -32,7 +32,7 @@ defmodule Gonz.Template do
     ---
     title: #{title}
     description: A new post
-    created: #{Gonz.now_iso8601()}
+    created_at: #{Gonz.now_iso8601()}
     ---
     Welcome to your brand new post.
     """
@@ -89,7 +89,7 @@ defmodule Gonz.Template do
   def page_template do
     """
     <div id="page">
-      <%= @frontmatter.title %>
+      <%= @front_matter.title %>
       <hr />
       <%= @content %>
     </div>

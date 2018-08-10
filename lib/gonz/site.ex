@@ -23,11 +23,13 @@ defmodule Gonz.Site do
   end
 
   defp create_assets_dirs(theme_name) do
+    theme_dir = themes_dir()
+
     dirs = [
-      "./themes/#{theme_name}/assets",
-      "./themes/#{theme_name}/assets/css",
-      "./themes/#{theme_name}/assets/js",
-      "./themes/#{theme_name}/assets/img"
+      "#{theme_dir}/#{theme_name}/assets",
+      "#{theme_dir}/#{theme_name}/assets/css",
+      "#{theme_dir}/#{theme_name}/assets/js",
+      "#{theme_dir}/#{theme_name}/assets/img"
     ]
 
     IO.puts("Creating asset directories: #{inspect(dirs)}")
@@ -38,17 +40,18 @@ defmodule Gonz.Site do
       |> Enum.all?(fn return_val -> return_val == :ok end)
 
     if all_dirs_created? do
-      File.write("./themes/#{theme_name}/assets/css/base.css", Gonz.Template.base_css())
+      File.write("#{theme_dir}/#{theme_name}/assets/css/base.css", Gonz.Template.base_css())
     else
       {:error, "Unable to create asset directories for theme: #{theme_name}"}
     end
   end
 
   defp create_layout(theme_name, project_name) do
-    layout_dir = "./themes/#{theme_name}/layout"
+    theme_dir = themes_dir()
+    layout_dir = "#{theme_dir}/#{theme_name}/layout"
 
     with _ <- IO.puts("Creating layout directory and templates: #{layout_dir}"),
-         :ok <- File.mkdir_p("./themes/#{theme_name}/layout"),
+         :ok <- File.mkdir_p("#{theme_dir}/#{theme_name}/layout"),
          :ok <- File.write("#{layout_dir}/post.eex", Gonz.Template.post_template()),
          :ok <- File.write("#{layout_dir}/layout.eex", Gonz.Template.layout(project_name)),
          :ok <- File.write("#{layout_dir}/index.eex", Gonz.Template.index()) do
@@ -57,7 +60,7 @@ defmodule Gonz.Site do
   end
 
   defp create_content_dirs() do
-    content_dirs = ["./posts", "./drafts", "./pages"]
+    content_dirs = [posts_dir(), drafts_dir(), pages_dir()]
     IO.puts("Creating content directories: #{inspect(content_dirs)}")
 
     case Enum.map(content_dirs, &File.mkdir/1) do
@@ -83,22 +86,29 @@ defmodule Gonz.Site do
   def posts_dir(), do: "./posts"
   def drafts_dir(), do: "./drafts"
   def pages_dir(), do: "./pages"
+  def themes_dir(), do: "./themes"
 
-  def filename_from_title("pages", title), do: "./pages/#{sanitize_title(title)}.md"
+  def filename_from_title("pages", title), do: "#{pages_dir()}/#{sanitize_title(title)}.md"
+
   def filename_from_title("posts", title) do
     date_string =
       DateTime.utc_now()
       |> DateTime.to_iso8601()
-      # |> DateTime.to_date()
-      # |> Date.to_string()
+
+    # |> DateTime.to_date()
+    # |> Date.to_string()
 
     safe_title = sanitize_title(title)
-    "./posts/#{date_string}-#{safe_title}.md"
+    "#{posts_dir()}/#{date_string}-#{safe_title}.md"
   end
 
   def sanitize_title(title) do
     title
     |> String.downcase()
     |> String.replace(" ", "-")
+  end
+
+  def template(theme_name) do
+    File.read("#{Gonz.Site.themes_dir()}/#{theme_name}/layout/layout.eex")
   end
 end
