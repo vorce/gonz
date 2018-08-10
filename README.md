@@ -20,8 +20,10 @@ end
 
     mix deps.get
     mix deps.compile
-    mix gonz.new
+    mix gonz.new example
+    ...
     mix gonz.build
+    ...
     mix gonz.server
 
 Open http://localhost:4000 in your browser.

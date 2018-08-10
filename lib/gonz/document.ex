@@ -19,7 +19,13 @@ defmodule Gonz.Document do
   end
 
   def html_filename(md_file) do
-    [base, suffix] = String.split(md_file.file_name, ".")
+    base = md_file.file_name
+    |> String.split(".")
+    |> Enum.reverse()
+    |> Enum.drop(1)
+    |> Enum.reverse()
+    |> Enum.join()
+
     base <> ".html"
   end
 end

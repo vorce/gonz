@@ -95,4 +95,14 @@ defmodule Gonz.Template do
     </div>
     """
   end
+
+  def page(title) do
+    """
+    ---
+    title: #{title}
+    description: A new page
+    ---
+    This is the #{title} page.
+    """
+  end
 end

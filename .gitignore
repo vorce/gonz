@@ -24,3 +24,7 @@ gonz-*.tar
 
 
 /build
+
+/example_site
+
+/.elixir_ls

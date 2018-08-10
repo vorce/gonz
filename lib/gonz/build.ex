@@ -12,8 +12,12 @@ defmodule Gonz.Build do
     with _ <- File.mkdir(output_dir()),
          {:ok, markdowns} <- Gonz.Markdown.parse(pages, Gonz.Site.pages_dir()),
          {:ok, documents} <- Gonz.Document.from_markdown_files(markdowns) do
-      write_documents_as_html(output_dir(), documents)
+      write_documents_as_html(output_dir() <> "/#{Gonz.Site.pages_dir()}", documents)
     end
+  end
+
+  def index() do
+    # TODO
   end
 
   def write_documents_as_html(dir, docs) do

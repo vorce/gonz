@@ -7,6 +7,7 @@ defmodule Gonz.Site do
   def new(name) do
     with :ok <- create_default_theme(name),
          :ok <- create_content_dirs(),
+         :ok <- Gonz.Page.create("About"),
          :ok <- Gonz.Post.create("Hello #{name}"),
          :ok <- File.write("./site.yml", Gonz.Template.config(name)) do
       update_gitignore()
@@ -82,4 +83,22 @@ defmodule Gonz.Site do
   def posts_dir(), do: "./posts"
   def drafts_dir(), do: "./drafts"
   def pages_dir(), do: "./pages"
+
+  def filename_from_title("pages", title), do: "./pages/#{sanitize_title(title)}.md"
+  def filename_from_title("posts", title) do
+    date_string =
+      DateTime.utc_now()
+      |> DateTime.to_iso8601()
+      # |> DateTime.to_date()
+      # |> Date.to_string()
+
+    safe_title = sanitize_title(title)
+    "./posts/#{date_string}-#{safe_title}.md"
+  end
+
+  def sanitize_title(title) do
+    title
+    |> String.downcase()
+    |> String.replace(" ", "-")
+  end
 end

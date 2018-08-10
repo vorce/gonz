@@ -28,5 +28,6 @@ defmodule Mix.Tasks.Gonz.Build do
 
   def build_index_page() do
     IO.puts("Building index page...")
+    Gonz.Build.index()
   end
 end
