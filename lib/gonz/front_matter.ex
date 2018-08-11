@@ -1,4 +1,8 @@
 defmodule Gonz.Markdown.FrontMatter do
+  @moduledoc """
+  This is metadata in the posts/pages markdown, before the actual content.
+  """
+
   defstruct title: "",
             description: "",
             created_at: nil,

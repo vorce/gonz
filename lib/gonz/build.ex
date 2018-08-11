@@ -3,6 +3,7 @@ defmodule Gonz.Build do
   Builds the html from the markdown files
   """
 
+  @doc "Create static page html files"
   def pages(:all, theme) do
     Gonz.Site.pages_dir()
     |> File.ls!()
@@ -19,15 +20,16 @@ defmodule Gonz.Build do
   end
 
   def pages_build_dir(), do: output_dir() <> "/#{Gonz.Site.pages_dir()}"
-  def posts_build_dir(), do: output_dir() <> "/{Gonz.Size.posts.dir()}"
+  def posts_build_dir(), do: output_dir() <> "/#{Gonz.Size.posts_dir()}"
 
+  @doc "Create index html pages, containing posts."
+  # TODO tidy this up a bit
   def index(theme, opts \\ []) do
     posts_per_page = Keyword.get(opts, :posts_per_page, 10)
-    # posts_dir = Gonz.Site.posts_dir()
 
     with {:ok, post_documents} <- Gonz.Document.load(Gonz.Site.posts_dir(), :posts),
          {:ok, page_documents} <- Gonz.Document.load(Gonz.Site.pages_dir(), :pages) do
-      total_chunks = post_documents |> length() |> div(posts_per_page) |> max(1) |> IO.inspect(label: "chunks")
+      total_chunks = post_documents |> length() |> div(posts_per_page) |> max(1)
 
       navigation =
         page_documents
@@ -43,7 +45,7 @@ defmodule Gonz.Build do
       |> Enum.each(fn docs ->
         {_, page_nr} = docs
         last_page = page_nr == total_chunks - 1
-        Gonz.Index.create_index(docs, output_dir(), theme, last_page: last_page, navigation: navigation)
+        Gonz.Index.create_html(docs, output_dir(), theme, last_page: last_page, navigation: navigation)
       end)
     end
   end
@@ -68,7 +70,12 @@ defmodule Gonz.Build do
     with {:ok, page_template} <- Gonz.Page.template(theme),
          page_content <- EEx.eval_string(page_template, assigns: doc_assigns),
          {:ok, layout_template} <- Gonz.Site.template(theme),
-         layout_assigns <- [content: page_content, navigation: navigation, js: Gonz.Asset.js(), css: Gonz.Asset.css()],
+         layout_assigns <- [
+           content: page_content,
+           navigation: navigation,
+           js: Gonz.Build.Asset.js(),
+           css: Gonz.Build.Asset.css()
+         ],
          final_content <- EEx.eval_string(layout_template, assigns: layout_assigns) do
       File.write(dir <> "/#{doc.filename}", final_content)
     end

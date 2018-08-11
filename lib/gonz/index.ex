@@ -3,7 +3,7 @@ defmodule Gonz.Index do
   Index page(s)
   """
 
-  def create_index({posts, index_page_nr}, index_dir, theme, opts) do
+  def create_html({posts, index_page_nr}, index_dir, theme, opts) do
     navigation = Keyword.get(opts, :navigation, "")
     last_page? = Keyword.get(opts, :last_page, false)
     older = unless last_page?, do: index_link(index_page_nr + 1, "◀︎ older")
@@ -17,8 +17,8 @@ defmodule Gonz.Index do
          layout_assigns <- [
            content: index_content,
            navigation: navigation,
-           js: Gonz.Asset.js(""),
-           css: Gonz.Asset.css("")
+           js: Gonz.Build.Asset.js(""),
+           css: Gonz.Build.Asset.css("")
          ],
          final_content <- EEx.eval_string(layout_template, assigns: layout_assigns) do
       File.write("#{index_dir}/#{file_name(index_page_nr)}", final_content)

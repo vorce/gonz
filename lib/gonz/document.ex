@@ -1,5 +1,11 @@
 defmodule Gonz.Document do
-  @moduledoc false
+  @moduledoc """
+  A document represents anything that will end up in the final site;
+  posts, pages, index.
+
+  Should this be the structure passed to all templates? I think that might be
+  a good idea...
+  """
 
   defstruct markdown: %Gonz.Markdown{},
             html_content: "",

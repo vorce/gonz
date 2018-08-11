@@ -1,4 +1,6 @@
 defmodule Gonz.Page do
+  @moduledoc false
+
   def create(title, opts \\ []) do
     File.write(Gonz.Site.filename_from_title("pages", title), Gonz.Bootstrap.page(title, opts))
   end

@@ -14,7 +14,7 @@ defmodule Mix.Tasks.Gonz.Build do
 
     {microseconds, _} =
       :timer.tc(fn ->
-        Gonz.Asset.copy(theme_name)
+        Gonz.Build.Asset.copy(theme_name)
         build_all_posts(theme_name)
         build_all_pages(theme_name)
         build_index_page(theme_name)
