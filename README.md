@@ -19,9 +19,9 @@ I looked closer at the github page and noticed that the project was a bit abando
 Some things I've had in mind while hacking on gonz:
 
 - Use case: personal homepage with blog like posts, and static pages.
-- Write posts and pages in Markdown.
-- Support themes / templates with `EEx` only. I doubt I will add support for anything else
-- Simple to use and get started with, using `mix` tasks
+- Write posts and pages in [Markdown](http://daringfireball.net/projects/markdown/syntax).
+- Support themes / templates with [EEx](https://hexdocs.pm/eex/EEx.html) only. I doubt I will add support for anything else
+- Simple to use and get started with, using [mix](https://hexdocs.pm/mix/Mix.html) tasks
 - Few dependencies
 - Clarity over performance. Performance shouldn't be horrible, but is not a top priority at this point.
 
@@ -59,6 +59,11 @@ Planned tasks:
 - Write pages and posts in Markdown
 - "Themes" with EEx templates
 - A page can be marked as a navigation item, which can be handled in the templates.
+
+### Themes
+
+To create your own theme use the default one as a reference on how and what data is available.
+The exact API for these are subject to change.
 
 ## Todo
 

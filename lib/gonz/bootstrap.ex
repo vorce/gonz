@@ -35,7 +35,7 @@ defmodule Gonz.Bootstrap do
 
       > To be or not to be
 
-      There is also code snippet support:
+      There is also code snippet support, and most other things you expect:
 
       ```elixir
       Gonz.Post.create("Mypage", nav_item?: true, content: "Yo!")
