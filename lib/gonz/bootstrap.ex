@@ -27,15 +27,23 @@ defmodule Gonz.Bootstrap do
     """
   end
 
-  def post(title) do
-    """
-    ---
-    title: #{title}
-    description: A new post
-    created_at: #{Gonz.now_iso8601()}
-    ---
-    Welcome to your brand new post.
-    """
+  def example_post(name) do
+    Gonz.Post.create(
+      "My fine post on #{name}",
+      content: """
+      We got *italics*, **bold**, [links](https://elixir-lang.org/), and quotes:
+
+      > To be or not to be
+
+      There is also code snippet support:
+
+      ```elixir
+      Gonz.Post.create("Mypage", nav_item?: true, content: "Yo!")
+      ```
+
+      ![The Gonz](https://media.giphy.com/media/gqG3dwMXRBaBq/giphy.gif)
+      """
+    )
   end
 
   def layout_template(name) do
@@ -97,21 +105,6 @@ defmodule Gonz.Bootstrap do
       <hr />
       <%= @content %>
     </div>
-    """
-  end
-
-  def page(title, opts) do
-    nav_item = Keyword.get(opts, :nav_item?, false)
-    description = Keyword.get(opts, :description, "A dull page")
-    content = Keyword.get(opts, :content, "This is the #{title} page")
-
-    """
-    ---
-    title: #{title}
-    description: #{description}
-    nav_item: #{nav_item}
-    ---
-    #{content}
     """
   end
 

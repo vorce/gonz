@@ -19,6 +19,7 @@ I looked closer at the github page and noticed that the project was a bit abando
 Some things I've had in mind while hacking on gonz:
 
 - Use case: personal homepage with blog like posts, and static pages.
+- Write posts and pages in Markdown.
 - Support themes / templates with `EEx` only. I doubt I will add support for anything else
 - Simple to use and get started with, using `mix` tasks
 - Few dependencies
@@ -38,7 +39,7 @@ end
 
     mix deps.get
     mix deps.compile
-    mix gonz.new example
+    mix gonz.new MyAwesomeSite
     mix gonz.build
 
 Open [build/index.html](build/index.html) in your browser.
@@ -53,8 +54,15 @@ Planned tasks:
 
 `mix gonz.page title`
 
+## Features
+
+- Write pages and posts in Markdown
+- "Themes" with EEx templates
+- A page can be marked as a navigation item, which can be handled in the templates.
+
 ## Todo
 
+- What about drafts..
 - Rethink code structure, can simplify a lot of things and make it more consistent I think.
 - Low hanging speed ups (Task.async?)
 - What about site.yml, actually use it.. or do we even need it? Would it be nicer in some more elixiry format?
