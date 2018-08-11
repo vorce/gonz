@@ -10,9 +10,10 @@ defmodule Mix.Tasks.Gonz.New do
   def run([]), do: run(["gonz"])
 
   def run([name]) do
-    {microseconds, result} = :timer.tc(fn ->
-      Gonz.Site.new(name)
-    end)
+    {microseconds, result} =
+      :timer.tc(fn ->
+        Gonz.Site.new(name)
+      end)
 
     case result do
       ok when ok in [:ok, {:ok, :ok}] ->

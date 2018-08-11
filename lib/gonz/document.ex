@@ -19,12 +19,6 @@ defmodule Gonz.Document do
     end
   end
 
-  def load(dir, files, category) do
-    with {:ok, markdowns} <- Gonz.Markdown.parse(files, dir) do
-      from_markdown_files(markdowns, category) |> IO.inspect(label: "docs for #{category}")
-    end
-  end
-
   def from_markdown_files(md_files, category) when is_list(md_files) do
     result = Enum.map(md_files, fn md_file -> from_markdown_file(md_file, category) end)
     {:ok, result}
@@ -48,7 +42,7 @@ defmodule Gonz.Document do
       |> Enum.reverse()
       |> Enum.join(".")
 
-    base <> ".html"
+    base
   end
 
   def valid_categories(), do: [:pages, :posts, :drafts, :index]

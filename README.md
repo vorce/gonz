@@ -62,8 +62,9 @@ Planned tasks:
 
 ### Themes
 
-To create your own theme use the default one as a reference on how and what data is available.
-The exact API for these are subject to change.
+To create your own theme I suggest you copy the default one, and use it as a reference on how and what data is available.
+
+The exact API for theemes are subject to change.
 
 ## Todo
 
