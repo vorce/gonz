@@ -7,9 +7,6 @@ defmodule Mix.Tasks.Gonz.Purge do
   @shortdoc "Remove all gonz related files and directories"
 
   def run(_args) do
-    # Ask for confirmation!
-    IO.puts("Removing all gonz related files and directories!")
-
     known_stuff = [
       Gonz.Site.drafts_dir(),
       Gonz.Site.posts_dir(),
@@ -19,6 +16,16 @@ defmodule Mix.Tasks.Gonz.Purge do
       Gonz.Build.output_dir()
     ]
 
-    Enum.each(known_stuff, &File.rm_rf/1)
+    confirmation =
+      IO.gets("Are you sure you want to remove the following files and directories:\n#{inspect(known_stuff)}, y/n? ")
+
+    case confirmation do
+      yes when yes in ["y\n", "yes\n", "Y\n"] ->
+        IO.puts("Removing all gonz related files and directories!")
+        Enum.each(known_stuff, &File.rm_rf/1)
+
+      _other ->
+        :ok
+    end
   end
 end
