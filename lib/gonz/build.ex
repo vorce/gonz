@@ -20,7 +20,7 @@ defmodule Gonz.Build do
   end
 
   def pages_build_dir(), do: output_dir() <> "/#{Gonz.Site.pages_dir()}"
-  def posts_build_dir(), do: output_dir() <> "/#{Gonz.Size.posts_dir()}"
+  def posts_build_dir(), do: output_dir() <> "/#{Gonz.Site.posts_dir()}"
 
   @doc "Create index html pages, containing posts."
   # TODO tidy this up a bit

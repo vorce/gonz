@@ -21,7 +21,7 @@ defmodule Mix.Tasks.Gonz.Build do
       end)
 
     IO.puts("Build done, took: #{microseconds * 0.000001}s. Results in #{Gonz.Build.output_dir()}")
-    IO.puts("Run `mix gonz.server` to serve your site locally.")
+    IO.puts("Open build/index.html in a browser to see your site")
 
     :ok
   end

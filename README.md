@@ -55,7 +55,6 @@ Planned tasks:
 ## Todo
 
 - Build the individual posts
-- Do we really need the `gonz.server` task? Can't the user just open the site in the browser? This would reduce code and dependenices.
 - Rethink code structure, can simplify a lot of things and make it more consistent I think.
 - Low hanging speed ups (Task.async?)
 - What about site.yml, do we need it? Would it nicer in some more elixiry format?

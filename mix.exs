@@ -22,9 +22,7 @@ defmodule Gonz.MixProject do
       # convert markdown to html
       {:earmark, "~> 1.2"},
       # parse the front matter in the markdowns
-      {:yaml_elixir, "~> 2.1"},
-      {:cowboy, "~> 2.4"},
-      {:plug, "~> 1.6"}
+      {:yaml_elixir, "~> 2.1"}
     ]
   end
 end
