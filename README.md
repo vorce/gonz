@@ -50,11 +50,11 @@ TODO
 Planned tasks:
 
 `mix gonz.post title`
+
 `mix gonz.page title`
 
 ## Todo
 
-- Build the individual posts
 - Rethink code structure, can simplify a lot of things and make it more consistent I think.
 - Low hanging speed ups (Task.async?)
-- What about site.yml, do we need it? Would it nicer in some more elixiry format?
+- What about site.yml, actually use it.. or do we even need it? Would it be nicer in some more elixiry format?

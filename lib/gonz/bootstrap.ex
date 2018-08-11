@@ -79,7 +79,7 @@ defmodule Gonz.Bootstrap do
     <div class="index">
       <%= Enum.map @posts, fn post ->
         \"\"\"
-        <h2>#\{post.markdown.front_matter.title}</h2>
+        <h2><a href="#\{post.category}/#\{post.filename}">#\{post.markdown.front_matter.title}</a></h2>
         #\{post.html_content}
         <hr />
         \"\"\"
@@ -126,7 +126,7 @@ defmodule Gonz.Bootstrap do
           "#\{@href_prefix}#\{item.category}/#\{item.filename}"
         end
         \"\"\"
-        <li><a href="#\{url}">#\{item.front_matter.title}</a></li>
+        <li><a href="#\{url}">#\{item.markdown.front_matter.title}</a></li>
         \"\"\"
       end) %>
       </ul>
