@@ -62,9 +62,13 @@ Planned tasks:
 
 ### Themes
 
-To create your own theme I suggest you copy the default one, and use it as a reference on how and what data is available.
+To create your own theme I suggest you copy the default one, and use it as a reference on how and what data is available. Example of a custom theme can be seen in [forvillelser](https://github.com/vorce/forvillelser)
 
-The exact API for theemes are subject to change.
+The exact API for themes are subject to change.
+
+If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename`
+
+If this gets old I suggest you create a target in a Makefile.
 
 ## Todo
 
