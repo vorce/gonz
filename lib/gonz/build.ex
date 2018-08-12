@@ -47,7 +47,13 @@ defmodule Gonz.Build do
   def write_document_as_html(dir, %Gonz.Document{} = doc, theme, opts \\ []) do
     navigation = Keyword.get(opts, :navigation, "")
     category = Keyword.get(opts, :category, :pages)
-    doc_assigns = [content: doc.html_content, front_matter: doc.markdown.front_matter, filename: doc.filename]
+
+    doc_assigns = [
+      content: doc.html_content,
+      front_matter: doc.markdown.front_matter,
+      filename: doc.filename,
+      content_dir: ""
+    ]
 
     with {:ok, doc_content} <- category_content(theme, category, assigns: doc_assigns),
          {:ok, layout_template} <- Gonz.Site.template(theme),
