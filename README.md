@@ -71,4 +71,3 @@ The exact API for theemes are subject to change.
 - What about drafts..
 - Rethink code structure, can simplify a lot of things and make it more consistent I think.
 - Low hanging speed ups (Task.async?)
-- What about site.yml, actually use it.. or do we even need it? Would it be nicer in some more elixiry format?

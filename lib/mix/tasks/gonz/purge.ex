@@ -12,7 +12,6 @@ defmodule Mix.Tasks.Gonz.Purge do
       Gonz.Site.posts_dir(),
       Gonz.Site.pages_dir(),
       Gonz.Site.themes_dir(),
-      "./site.yml",
       Gonz.Build.output_dir()
     ]
 

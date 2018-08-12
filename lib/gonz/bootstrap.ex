@@ -3,19 +3,6 @@ defmodule Gonz.Bootstrap do
   Project template
   """
 
-  def config(name) do
-    """
-    ---
-    name: #{name} - a brand new static site
-    url: http://my.blog.url
-    description: This is my site about things
-    language: en-us
-    posts_per_page: 10
-    sort_posts: ascending
-    theme: default
-    """
-  end
-
   def post_template() do
     """
     <div id="post">

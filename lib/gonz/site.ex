@@ -14,8 +14,7 @@ defmodule Gonz.Site do
            Gonz.Post.create(
              "My older post",
              created_at: NaiveDateTime.utc_now() |> NaiveDateTime.add(-172_800) |> NaiveDateTime.to_iso8601()
-           ),
-         :ok <- File.write("./site.yml", Gonz.Bootstrap.config(name)) do
+           ) do
       update_gitignore()
     end
   end
