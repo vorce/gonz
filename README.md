@@ -1,3 +1,5 @@
+[![Hex.pm](https://img.shields.io/hexpm/v/gonz.svg)](https://hex.pm/packages/gonz)
+
 # gonz
 
 > I can write anything and just put it in a zine, and then it's out there. It is like blogging but on paper. It is what I started to do before the computers were all popular.
@@ -32,7 +34,7 @@ Some things I've had in mind while hacking on gonz:
 ```elixir
 defp deps do
   [
-    {:gonz, "~> 0.1" }
+    {:gonz, "~> 0.1"}
   ]
 end
 ```
