@@ -46,11 +46,31 @@ end
 
 Open [build/index.html](build/index.html) in your browser.
 
-## Adding content
+## Mix tasks
 
-TODO
+### gonz.new [site-name]
 
-Planned tasks:
+Creates a new gonz project/site.
+
+Arguments:
+- site-name: Optional name of the site to create, just determines how the bootstrapped site will look.
+
+### gonz.build [theme-name] [output-directory]
+
+Builds the site.
+
+Arguments:
+- theme-name: Optional name of the theme to use, defaults to "default"
+- output-directory: Optional name of the build/output directory. Defaults to "./build"
+
+### gonz.purge [output-directory]
+
+Removes all files related to the site. This can give you a fresh start. Mostly used for manual testing new sites easily.
+
+Arguments:
+- output-directory: Optional name of the build/output directory. Defaults to "./build"
+
+### Planned tasks:
 
 `mix gonz.post title`
 
@@ -69,9 +89,13 @@ The easiest way to create your own theme is to copy the default one, and use it 
 
 The exact API for themes are subject to change.
 
-**If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename`**
+**If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename build`**
 
 If this gets repetitive I suggest you create a target in a Makefile.
+
+## Github pages howto
+
+TBD...
 
 ## Todo
 

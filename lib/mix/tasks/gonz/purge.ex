@@ -6,13 +6,15 @@ defmodule Mix.Tasks.Gonz.Purge do
 
   @shortdoc "Remove all gonz related files and directories"
 
-  def run(_args) do
+  def run([]), do: run([Gonz.Build.default_output_dir()])
+
+  def run([output]) do
     known_stuff = [
       Gonz.Site.drafts_dir(),
       Gonz.Site.posts_dir(),
       Gonz.Site.pages_dir(),
       Gonz.Site.themes_dir(),
-      Gonz.Build.output_dir()
+      output
     ]
 
     confirmation =
