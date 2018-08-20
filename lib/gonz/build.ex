@@ -14,7 +14,7 @@ defmodule Gonz.Build do
 
     post_docs
     |> Enum.sort(fn a, b ->
-      b.filename >= a.filename
+      a.filename >= b.filename
     end)
     |> Enum.chunk_every(posts_per_page)
     |> Enum.with_index()

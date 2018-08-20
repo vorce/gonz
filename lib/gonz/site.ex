@@ -104,10 +104,18 @@ defmodule Gonz.Site do
     "#{posts_dir()}/#{date_string}-#{safe_title}.md"
   end
 
+  @strip_chars [",", ".", ".", ":", ";", "!", "?", "(", ")", "[", "]", "{", "}"]
   def sanitize_title(title) do
     title
     |> String.downcase()
     |> String.replace(" ", "-")
+    |> strip_all(@strip_chars)
+  end
+
+  defp strip_all(input, chars) do
+    Enum.reduce(chars, input, fn char, inp ->
+      String.replace(inp, char, "")
+    end)
   end
 
   def template(theme_name) do
