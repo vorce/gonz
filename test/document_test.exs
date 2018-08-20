@@ -27,5 +27,17 @@ defmodule Gonz.DocumentTest do
 
       assert Document.html_filename(md, :pages) == "about"
     end
+
+    test "replaces some charcters with dash" do
+      md = %Gonz.Markdown{
+        filename: "2018-08-11T17:51:32.905958Z-my-older-post.md",
+        front_matter: %Gonz.Markdown.FrontMatter{
+          created_at: "2018-08-09T17:51:32.905935Z",
+          title: "Yo! Hey, there. Friendo?: ok; yeah (yeah) [heh] {foo}"
+        }
+      }
+
+      assert Document.html_filename(md, :posts) == "2018-08-09T17:51-yo-hey-there-friendo-ok-yeah-yeah-heh-foo"
+    end
   end
 end

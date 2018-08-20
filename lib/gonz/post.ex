@@ -18,9 +18,11 @@ defmodule Gonz.Post do
 
     """
     ---
-    title: #{title}
-    description: #{description}
-    created_at: #{created_at}
+    %{
+      title: "#{title}",
+      description: "#{description}",
+      created_at: "#{created_at}"
+    }
     ---
     #{content}
     """

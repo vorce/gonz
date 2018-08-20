@@ -10,11 +10,7 @@ defmodule Gonz.Site do
          :ok <- Gonz.Page.create("Hello"),
          :ok <- Gonz.Page.create("About", nav_item?: true, content: "Link to non nav page: [hello](hello)"),
          :ok <- Gonz.Bootstrap.example_post(name),
-         :ok <-
-           Gonz.Post.create(
-             "My older post",
-             created_at: NaiveDateTime.utc_now() |> NaiveDateTime.add(-172_800) |> NaiveDateTime.to_iso8601()
-           ) do
+         :ok <- Gonz.Post.create("My older post", created_at: "2018-08-18T09:48:34.117782Z") do
       update_gitignore()
     end
   end
@@ -108,10 +104,18 @@ defmodule Gonz.Site do
     "#{posts_dir()}/#{date_string}-#{safe_title}.md"
   end
 
+  @strip_chars [",", ".", ".", ":", ";", "!", "?", "(", ")", "[", "]", "{", "}"]
   def sanitize_title(title) do
     title
     |> String.downcase()
     |> String.replace(" ", "-")
+    |> strip_all(@strip_chars)
+  end
+
+  defp strip_all(input, chars) do
+    Enum.reduce(chars, input, fn char, inp ->
+      String.replace(inp, char, "")
+    end)
   end
 
   def template(theme_name) do
