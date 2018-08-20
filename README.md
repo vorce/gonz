@@ -1,4 +1,4 @@
-[![Hex.pm](https://img.shields.io/hexpm/v/gonz.svg)](https://hex.pm/packages/gonz)
+[![Hex.pm](https://img.shields.io/hexpm/v/gonz.svg)](https://hex.pm/packages/gonz) [![Build Status](https://travis-ci.org/vorce/gonz.svg?branch=master)](https://travis-ci.org/vorce/gonz)
 
 # gonz
 
