@@ -28,21 +28,28 @@ defmodule Gonz.Document do
     %__MODULE__{
       markdown: md_file,
       html_content: Earmark.as_html!(md_file.content),
-      filename: html_filename(md_file),
+      filename: html_filename(md_file, category),
       category: category
     }
   end
 
-  def html_filename(md_file) do
-    base =
-      md_file.filename
-      |> String.split(".")
-      |> Enum.reverse()
-      |> Enum.drop(1)
-      |> Enum.reverse()
-      |> Enum.join(".")
+  def html_filename(md_file, :posts) do
+    {:ok, datetime, _} = DateTime.from_iso8601(md_file.front_matter.created_at)
 
-    base
+    date_time_minutes =
+      datetime
+      |> DateTime.truncate(:second)
+      |> DateTime.to_iso8601()
+      |> String.split(":")
+      |> Enum.take(2)
+      |> Enum.join(":")
+
+    sanitized_title = Gonz.Site.sanitize_title(md_file.front_matter.title)
+    date_time_minutes <> "-" <> sanitized_title
+  end
+
+  def html_filename(md_file, :pages) do
+    Gonz.Site.sanitize_title(md_file.front_matter.title)
   end
 
   def valid_categories(), do: [:pages, :posts, :drafts, :index]
