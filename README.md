@@ -34,7 +34,7 @@ Some things I've had in mind while hacking on gonz:
 ```elixir
 defp deps do
   [
-    {:gonz, "~> 0.1"}
+    {:gonz, "~> 0.2"}
   ]
 end
 ```
@@ -60,17 +60,18 @@ Planned tasks:
 
 - Write pages and posts in Markdown
 - "Themes" with EEx templates
-- A page can be marked as a navigation item, which can be handled in the templates.
+- A page can be marked as a navigation item, which can be handled in the templates
+- Front matter is specified as an elixir map
 
 ### Themes
 
-To create your own theme I suggest you copy the default one, and use it as a reference on how and what data is available. Example of a custom theme can be seen in [forvillelser](https://github.com/vorce/forvillelser)
+The easiest way to create your own theme is to copy the default one, and use it as a reference on how and what data is available. Example of a custom theme can be seen in [forvillelser](https://github.com/vorce/forvillelser)
 
 The exact API for themes are subject to change.
 
-If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename`
+**If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename`**
 
-If this gets old I suggest you create a target in a Makefile.
+If this gets repetitive I suggest you create a target in a Makefile.
 
 ## Todo
 
