@@ -23,7 +23,9 @@ defmodule Gonz.MixProject do
     [
       # convert markdown to html
       {:earmark, "~> 1.2"},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+
+      # Needed because elixir 1.6
+      {:ex_doc, "~> 0.18.0", only: :dev}
     ]
   end
 
