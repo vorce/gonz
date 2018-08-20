@@ -13,7 +13,7 @@ defmodule Gonz.DocumentTest do
         }
       }
 
-      assert Document.html_filename(md, :posts) == "2018-08-09T17:51-my-older-post"
+      assert Document.html_filename(md, :posts) == "2018-08-09T17:51-my-older-post.html"
     end
 
     test "generates nice filename for pages" do
@@ -25,10 +25,10 @@ defmodule Gonz.DocumentTest do
         }
       }
 
-      assert Document.html_filename(md, :pages) == "about"
+      assert Document.html_filename(md, :pages) == "about.html"
     end
 
-    test "replaces some charcters with dash" do
+    test "replaces some characters with dash" do
       md = %Gonz.Markdown{
         filename: "2018-08-11T17:51:32.905958Z-my-older-post.md",
         front_matter: %Gonz.Markdown.FrontMatter{
@@ -37,7 +37,7 @@ defmodule Gonz.DocumentTest do
         }
       }
 
-      assert Document.html_filename(md, :posts) == "2018-08-09T17:51-yo-hey-there-friendo-ok-yeah-yeah-heh-foo"
+      assert Document.html_filename(md, :posts) == "2018-08-09T17:51-yo-hey-there-friendo-ok-yeah-yeah-heh-foo.html"
     end
   end
 end

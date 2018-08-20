@@ -45,11 +45,11 @@ defmodule Gonz.Document do
       |> Enum.join(":")
 
     sanitized_title = Gonz.Site.sanitize_title(md_file.front_matter.title)
-    date_time_minutes <> "-" <> sanitized_title
+    date_time_minutes <> "-" <> sanitized_title <> ".html"
   end
 
   def html_filename(md_file, :pages) do
-    Gonz.Site.sanitize_title(md_file.front_matter.title)
+    Gonz.Site.sanitize_title(md_file.front_matter.title) <> ".html"
   end
 
   def valid_categories(), do: [:pages, :posts, :drafts, :index]
