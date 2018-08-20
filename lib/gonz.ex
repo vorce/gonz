@@ -4,13 +4,7 @@ defmodule Gonz do
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Gonz.hello()
-      :world
-
+  Shorthand for now in iso8601
   """
   def now_iso8601() do
     DateTime.to_iso8601(DateTime.utc_now())
