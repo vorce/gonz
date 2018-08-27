@@ -5,12 +5,14 @@ defmodule Gonz.Bootstrap do
 
   def post_template() do
     """
-    <div id="post">
-      <h2>
+    <article class="h-entry">
+      <h2 class="p-name">
         <a href="<%= @filename %>"><%= @front_matter.title %></a>
       </h2>
-      <%= @content %>
-    </div>
+      <div class="e-content">
+        <%= @content %>
+      </div>
+    </article>
     """
   end
 
@@ -76,8 +78,12 @@ defmodule Gonz.Bootstrap do
     <div class="index">
       <%= Enum.map @posts, fn post ->
         \"\"\"
-        <h2><a href="#\{post.category}/#\{post.filename}">#\{post.markdown.front_matter.title}</a></h2>
-        #\{post.html_content}
+        <article class="h-entry">
+          <h2 class="p-name"><a href="#\{post.category}/#\{post.filename}">#\{post.markdown.front_matter.title}</a></h2>
+            <div class="e-content">
+              #\{post.html_content}
+            </div>
+        </article>
         <hr />
         \"\"\"
       end %>
@@ -90,7 +96,7 @@ defmodule Gonz.Bootstrap do
   def page_template() do
     """
     <div id="page">
-      <%= @front_matter.title %>
+      <h1><%= @front_matter.title %></h1>
       <hr />
       <%= @content %>
     </div>
@@ -99,7 +105,7 @@ defmodule Gonz.Bootstrap do
 
   def navigation_template() do
     """
-    <div id="nav">
+    <nav>
       <ul>
       <%= Enum.map(@items, fn item ->
         url = if item.category == :index do
@@ -112,7 +118,7 @@ defmodule Gonz.Bootstrap do
         \"\"\"
       end) %>
       </ul>
-    </div>
+    </nav>
     """
   end
 end
