@@ -48,14 +48,16 @@ Open [build/index.html](build/index.html) in your browser.
 
 ## Mix tasks
 
-### gonz.new [site-name]
+These are the most common ways to interact with gonz while building your site.
+
+### `gonz.new [site-name]`
 
 Creates a new gonz project/site.
 
 Arguments:
 - site-name: Optional name of the site to create, just determines how the bootstrapped site will look.
 
-### gonz.post <post-title>
+### `gonz.post <post-title>`
 
 Creates a new post in `posts/` with the specified title.
 
@@ -64,7 +66,7 @@ Example: `mix gonz.post "My amazing post about Things"`
 Arguments:
 - post-title: Required title of the post
 
-### gonz.build [theme-name] [output-directory]
+### `gonz.build [theme-name] [output-directory]`
 
 Builds the site.
 
@@ -72,7 +74,7 @@ Arguments:
 - theme-name: Optional name of the theme to use, defaults to "default"
 - output-directory: Optional name of the build/output directory. Defaults to "./build"
 
-### gonz.purge [output-directory]
+### `gonz.purge [output-directory]`
 
 Removes all files related to the site. This can give you a fresh start. Mostly used for manual testing new sites easily.
 
