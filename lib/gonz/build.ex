@@ -52,14 +52,8 @@ defmodule Gonz.Build do
     navigation = Keyword.get(opts, :navigation, "")
     category = Keyword.get(opts, :category, :pages)
 
-    doc_assigns = [
-      content: doc.html_content,
-      front_matter: doc.markdown.front_matter,
-      filename: doc.filename,
-      content_dir: ""
-    ]
-
-    with {:ok, doc_content} <- category_content(theme, category, assigns: doc_assigns),
+    with doc_assigns <- Gonz.Document.to_assigns(doc),
+         {:ok, doc_content} <- category_content(theme, category, assigns: doc_assigns),
          {:ok, layout_template} <- Gonz.Site.template(theme),
          # This is really awkward..
          asset_dir <- dir |> Path.split() |> Enum.take(2) |> Path.join(),

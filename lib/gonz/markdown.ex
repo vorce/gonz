@@ -2,7 +2,7 @@ defmodule Gonz.Markdown do
   @moduledoc false
 
   defstruct content: "",
-            front_matter: "",
+            front_matter: %Gonz.Markdown.FrontMatter{},
             filename: ""
 
   def parse(files, dir) when is_list(files) do

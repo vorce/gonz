@@ -94,7 +94,9 @@ Arguments:
 
 The easiest way to create your own theme is to copy the default one, and use it as a reference on how and what data is available. Example of a custom theme can be seen in [forvillelser](https://github.com/vorce/forvillelser)
 
-The exact API for themes are subject to change.
+The exact API for themes are subject to change. The available data for the theme templates are returned by  [`Document.to_assigns/1`](https://github.com/vorce/gonz/blob/master/lib/gonz/document.ex#L55)
+
+#### Building your site with a non-default theme
 
 **If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename build`**
 
