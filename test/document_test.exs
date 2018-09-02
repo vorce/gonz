@@ -3,6 +3,22 @@ defmodule Gonz.DocumentTest do
 
   alias Gonz.Document
 
+  describe "to_assigns" do
+    test "returns a keyword list" do
+      doc = %Document{
+        html_content: "<p>Hi</p>",
+        markdown: %Gonz.Markdown{content: "\n\nHi"},
+        filename: "test_filename.html"
+      }
+
+      assert Document.to_assigns(doc) == [
+               content: doc.html_content,
+               front_matter: doc.markdown.front_matter,
+               filename: doc.filename
+             ]
+    end
+  end
+
   describe "html_filename/2" do
     test "generates a nice filename for posts" do
       md = %Gonz.Markdown{

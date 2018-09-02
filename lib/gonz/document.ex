@@ -2,9 +2,6 @@ defmodule Gonz.Document do
   @moduledoc """
   A document represents anything that will end up in the final site;
   posts, pages, index.
-
-  Should this be the structure passed to all templates? I think that might be
-  a good idea...
   """
 
   defstruct markdown: %Gonz.Markdown{},
@@ -53,4 +50,13 @@ defmodule Gonz.Document do
   end
 
   def valid_categories(), do: [:pages, :posts, :drafts, :index]
+
+  @doc "This determines the available variables in the pages and post theme templates"
+  def to_assigns(%__MODULE__{} = doc) do
+    [
+      content: doc.html_content,
+      front_matter: doc.markdown.front_matter,
+      filename: doc.filename
+    ]
+  end
 end
