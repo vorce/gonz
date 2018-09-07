@@ -95,10 +95,8 @@ defmodule Gonz.Site do
   def filename_from_title("posts", title) do
     date_string =
       DateTime.utc_now()
+      |> DateTime.truncate(:second)
       |> DateTime.to_iso8601()
-
-    # |> DateTime.to_date()
-    # |> Date.to_string()
 
     safe_title = sanitize_title(title)
     "#{posts_dir()}/#{date_string}-#{safe_title}.md"
@@ -110,6 +108,7 @@ defmodule Gonz.Site do
     |> String.downcase()
     |> String.replace(" ", "-")
     |> strip_all(@strip_chars)
+    |> String.replace("---", "-")
   end
 
   defp strip_all(input, chars) do
