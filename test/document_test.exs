@@ -14,7 +14,8 @@ defmodule Gonz.DocumentTest do
       assert Document.to_assigns(doc) == [
                content: doc.html_content,
                front_matter: doc.markdown.front_matter,
-               filename: doc.filename
+               filename: doc.filename,
+               content_dir: ""
              ]
     end
   end

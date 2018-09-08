@@ -52,11 +52,12 @@ defmodule Gonz.Document do
   def valid_categories(), do: [:pages, :posts, :drafts, :index]
 
   @doc "This determines the available variables in the pages and post theme templates"
-  def to_assigns(%__MODULE__{} = doc) do
+  def to_assigns(%__MODULE__{} = doc, content_dir \\ "") do
     [
       content: doc.html_content,
       front_matter: doc.markdown.front_matter,
-      filename: doc.filename
+      filename: doc.filename,
+      content_dir: content_dir
     ]
   end
 end
