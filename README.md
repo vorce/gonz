@@ -1,3 +1,5 @@
+[![white flower daisy fing shawiwey by Mark Gonzales](white_flower_daisy_fing_shawiwey.jpg)](https://hvw8.com/exhibitions/artists/mark-gonzales)
+
 [![Hex.pm](https://img.shields.io/hexpm/v/gonz.svg)](https://hex.pm/packages/gonz) [![Build Status](https://travis-ci.org/vorce/gonz.svg?branch=master)](https://travis-ci.org/vorce/gonz)
 
 # gonz
@@ -106,7 +108,17 @@ If this gets repetitive I suggest you create a target in a Makefile.
 
 ## Github pages howto
 
-TBD...
+- Enable github pages for your project (pick "Master branch /docs folder" source option)
+- Create a `docs` dir in your project root
+- When building the site make sure you specify the docs dir as the output directory: `mix gonz.build <theme> docs`
+- Add all files in `docs` and commit, push. 🎉
+
+## Netlify howto
+
+Even simpler! My own site uses Netlify, so you can copy the Makefile in [Forvillelser](https://github.com/vorce/forvillelser).
+
+- Then configure the project in netlify to use `make` as the build command, and `build` as the publish directory.
+- Now all you need to do is write your posts, commit and push them and netlify will build the site and publish it. 🎉
 
 ## Todo
 
