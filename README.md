@@ -36,7 +36,7 @@ Some things I've had in mind while hacking on gonz:
 ```elixir
 defp deps do
   [
-    {:gonz, "~> 0.2"}
+    {:gonz, "~> 1.3"}
   ]
 end
 ```
