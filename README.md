@@ -8,27 +8,6 @@
 
 Static site generator. **Heavily** inspired by Obelisk (thanks for a great project!).
 
-## Why
-
-Why create something new instead of using Obelisk, Serum, or Coil?
-
-Short answer: Fun, learning, and flexibility.
-
-Longer answer: I checked out all of these projects. Out of the three I really liked how Obelisk looked to use,
-but it did not compile out of the box. Once changing some dependencies (plug), it compiled, but when running it crashed.
-I looked closer at the github page and noticed that the project was a bit abandoned. Then I figured  "meh, let's code"!
-
-## Goals
-
-Some things I've had in mind while hacking on gonz:
-
-- Use case: personal homepage with blog like posts, and static pages.
-- Write posts and pages in [Markdown](http://daringfireball.net/projects/markdown/syntax).
-- Support themes / templates with [EEx](https://hexdocs.pm/eex/EEx.html) only. I doubt I will add support for anything else
-- Simple to use and get started with, using [mix](https://hexdocs.pm/mix/Mix.html) tasks
-- Few dependencies
-- Clarity over performance. Performance shouldn't be horrible, but is not a top priority at this point.
-
 ## Quick start
 
 `mix new mysite`
@@ -47,6 +26,24 @@ end
     mix gonz.build
 
 Open [build/index.html](build/index.html) in your browser.
+
+## Goals
+
+Some things I've had in mind while hacking on gonz:
+
+- Use case: personal homepage with blog like posts, and static pages.
+- Write posts and pages in [Markdown](http://daringfireball.net/projects/markdown/syntax).
+- Support themes / templates with [EEx](https://hexdocs.pm/eex/EEx.html) only. I doubt I will add support for anything else
+- Simple to use and get started with, using [mix](https://hexdocs.pm/mix/Mix.html) tasks
+- Few dependencies
+- Clarity over performance. Performance shouldn't be horrible, but is not a top priority at this point.
+
+## Features
+
+- Write pages and posts in Markdown
+- "Themes" with EEx templates
+- A page can be marked as a navigation item, which can be handled in the templates
+- Front matter is specified as an elixir map
 
 ## Mix tasks
 
@@ -87,13 +84,6 @@ Arguments:
 
 `mix gonz.page title`
 
-## Features
-
-- Write pages and posts in Markdown
-- "Themes" with EEx templates
-- A page can be marked as a navigation item, which can be handled in the templates
-- Front matter is specified as an elixir map
-
 ### Themes
 
 The easiest way to create your own theme is to copy the default one, and use it as a reference on how and what data is available. Example of a custom theme can be seen in [forvillelser](https://github.com/vorce/forvillelser)
@@ -120,8 +110,19 @@ Even simpler! My own site uses Netlify, so you can copy the Makefile in [Forvill
 - Then configure the project in netlify to use `make` as the build command, and `build` as the publish directory.
 - Now all you need to do is write your posts, commit and push them and netlify will build the site and publish it. 🎉
 
+## Why
+
+Why create something new instead of using Obelisk, Serum, or Coil?
+
+Short answer: Fun, learning, and flexibility.
+
+Longer answer: I checked out all of these projects. Out of the three I really liked how Obelisk looked to use,
+but it did not compile out of the box. Once changing some dependencies (plug), it compiled, but when running it crashed.
+I looked closer at the github page and noticed that the project was a bit abandoned. Then I figured  "meh, let's code"!
+
 ## Todo
 
 - What about drafts..
 - Rethink code structure, can simplify a lot of things and make it more consistent I think.
 - Low hanging speed ups (Task.async?)
+- Assets. Right now it's all or nothing. What if I want to publish a separate page that needs some assets that nothing else needs?
