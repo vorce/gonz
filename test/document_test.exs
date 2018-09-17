@@ -30,7 +30,7 @@ defmodule Gonz.DocumentTest do
         }
       }
 
-      assert Document.html_filename(md, :posts) == "2018-08-09T17:51-my-older-post.html"
+      assert Document.html_filename(md, :posts) == "2018-08-09-my-older-post.html"
     end
 
     test "generates nice filename for pages" do
@@ -54,7 +54,7 @@ defmodule Gonz.DocumentTest do
         }
       }
 
-      assert Document.html_filename(md, :posts) == "2018-08-09T17:51-yo-hey-there-friendo-ok-yeah-yeah-heh-foo.html"
+      assert Document.html_filename(md, :posts) == "2018-08-09-yo-hey-there-friendo-ok-yeah-yeah-heh-foo.html"
     end
   end
 end

@@ -33,16 +33,14 @@ defmodule Gonz.Document do
   def html_filename(md_file, :posts) do
     {:ok, datetime, _} = DateTime.from_iso8601(md_file.front_matter.created_at)
 
-    date_time_minutes =
+    date_string =
       datetime
       |> DateTime.truncate(:second)
-      |> DateTime.to_iso8601()
-      |> String.split(":")
-      |> Enum.take(2)
-      |> Enum.join(":")
+      |> DateTime.to_date()
+      |> Date.to_iso8601()
 
     sanitized_title = Gonz.Site.sanitize_title(md_file.front_matter.title)
-    date_time_minutes <> "-" <> sanitized_title <> ".html"
+    date_string <> "-" <> sanitized_title <> ".html"
   end
 
   def html_filename(md_file, :pages) do
