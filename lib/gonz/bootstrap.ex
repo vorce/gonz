@@ -108,7 +108,7 @@ defmodule Gonz.Bootstrap do
     <nav>
       <ul>
       <%= Enum.map(@items, fn item ->
-        url = if item.category == :post do
+        url = if item.category == :posts do
           "#\{@href_prefix}#\{item.category}/#\{item.filename}"
         else
           "#\{@href_prefix}#\{item.filename}"
