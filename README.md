@@ -24,8 +24,9 @@ end
     mix deps.compile
     mix gonz.new MyAwesomeSite
     mix gonz.build
+    mix gonz.serve
 
-Open [build/index.html](build/index.html) in your browser.
+Open [http://localhost:4000/](http://localhost:4000/) in your browser.
 
 ## Goals
 
@@ -73,6 +74,13 @@ Arguments:
 - theme-name: Optional name of the theme to use, defaults to "default"
 - output-directory: Optional name of the build/output directory. Defaults to "./build"
 
+### `gonz.serve` [output-directory]
+
+Serves the built site for local development.
+
+Arguments:
+- output-directory: Optional name of the build/output directory to serve files from. Defaults to "./build"
+
 ### `gonz.purge [output-directory]`
 
 Removes all files related to the site. This can give you a fresh start. Mostly used for manual testing new sites easily.
@@ -83,6 +91,14 @@ Arguments:
 ### Planned tasks
 
 `mix gonz.page title`
+
+### Adding static assets to your site
+
+#### Example: You want to add the image "pangolin.png" to a post
+
+1. Copy pangolin.png to "./assets/images/" (you may have to create the "images" subdir)
+2. In your post file markdown, insert: `![A cool pangolin](./assets/images/pangolin.png)`
+3. Build the site 🎉
 
 ### Themes
 

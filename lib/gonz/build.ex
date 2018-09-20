@@ -35,8 +35,8 @@ defmodule Gonz.Build do
          _ <- File.mkdir_p(pages_output),
          {:ok, post_docs} <- Gonz.Document.load(Gonz.Site.posts_dir(), :posts),
          {:ok, page_docs} <- Gonz.Document.load(Gonz.Site.pages_dir(), :pages),
-         post_navigation <- Gonz.Navigation.content(page_docs, theme, "../"),
-         page_navigation <- Gonz.Navigation.content(page_docs, theme, ""),
+         post_navigation <- Gonz.Navigation.content(page_docs, theme),
+         page_navigation <- Gonz.Navigation.content(page_docs, theme),
          :ok <- write_documents_as_html(posts_output, post_docs, theme, navigation: post_navigation, category: :posts),
          :ok <- write_documents_as_html(pages_output, page_docs, theme, navigation: page_navigation, category: :pages) do
       index(post_docs, theme, page_navigation, output: output)
@@ -58,21 +58,16 @@ defmodule Gonz.Build do
          {:ok, layout_template} <- Gonz.Site.template(theme),
          # This is really awkward..
          asset_dir <- dir |> Path.split() |> Enum.take(2) |> Path.join(),
-         category_asset_prefix <- category_asset_prefix(category),
          layout_assigns <- [
            content: doc_content,
            navigation: navigation,
-           js: Gonz.Build.Asset.js(asset_dir, category_asset_prefix),
-           css: Gonz.Build.Asset.css(asset_dir, category_asset_prefix)
+           js: Gonz.Build.Asset.js(asset_dir),
+           css: Gonz.Build.Asset.css(asset_dir)
          ],
          final_content <- EEx.eval_string(layout_template, assigns: layout_assigns) do
       File.write(dir <> "/#{doc.filename}", final_content)
     end
   end
-
-  def category_asset_prefix(:index), do: ""
-  def category_asset_prefix(:pages), do: ""
-  def category_asset_prefix(:posts), do: "../"
 
   def default_output_dir(), do: "./build"
 

@@ -17,8 +17,8 @@ defmodule Gonz.Index do
          layout_assigns <- [
            content: index_content,
            navigation: navigation,
-           js: Gonz.Build.Asset.js(index_dir, ""),
-           css: Gonz.Build.Asset.css(index_dir, "")
+           js: Gonz.Build.Asset.js(index_dir),
+           css: Gonz.Build.Asset.css(index_dir)
          ],
          final_content <- EEx.eval_string(layout_template, assigns: layout_assigns) do
       File.write("#{index_dir}/#{file_name(index_page_nr)}", final_content)

@@ -14,12 +14,13 @@ defmodule Mix.Tasks.Gonz.Build do
 
     {microseconds, _} =
       :timer.tc(fn ->
-        Gonz.Build.Asset.copy(theme_name, output)
+        Gonz.Build.Asset.copy_theme(theme_name, output)
+        Gonz.Build.Asset.copy_site(output)
         Gonz.Build.site(theme_name, output)
       end)
 
     IO.puts("Build done, took: #{microseconds * 0.000001}s")
-    IO.puts("Open #{output}/index.html in a browser to see your site")
+    IO.puts("Baked files in \"#{output}\" can now be served by: mix gonz.serve #{output}")
 
     :ok
   end

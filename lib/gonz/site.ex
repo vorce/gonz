@@ -62,15 +62,16 @@ defmodule Gonz.Site do
   end
 
   defp create_content_dirs() do
-    content_dirs = [posts_dir(), drafts_dir(), pages_dir()]
+    content_dirs = [posts_dir(), drafts_dir(), pages_dir(), site_assets_dir()]
     IO.puts("Creating content directories: #{inspect(content_dirs)}")
+    result = Enum.map(content_dirs, &File.mkdir/1)
 
-    case Enum.map(content_dirs, &File.mkdir/1) do
-      [:ok, :ok, :ok] ->
+    case Enum.all?(result, &(&1 == :ok)) do
+      true ->
         :ok
 
-      not_ok ->
-        errors = Enum.reject(not_ok, fn return_val -> return_val == :ok end)
+      false ->
+        errors = Enum.reject(result, &(&1 == :ok))
         {:error, errors}
     end
   end
@@ -89,6 +90,7 @@ defmodule Gonz.Site do
   def drafts_dir(), do: "./drafts"
   def pages_dir(), do: "./pages"
   def themes_dir(), do: "./themes"
+  def site_assets_dir(), do: "./assets"
 
   def filename_from_title("pages", title), do: "#{pages_dir()}/#{sanitize_title(title)}.md"
 
