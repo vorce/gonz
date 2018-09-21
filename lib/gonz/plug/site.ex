@@ -43,7 +43,7 @@ defmodule Gonz.Plug.Site do
     Plug.Conn.send_resp(
       conn,
       404,
-      "Resource not found. Build your site with: mix gonz.build and then go to http://localhost:4000/"
+      "Resource not found. Build your site with: mix gonz.build first..."
     )
   end
 

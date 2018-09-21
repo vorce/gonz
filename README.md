@@ -74,12 +74,13 @@ Arguments:
 - theme-name: Optional name of the theme to use, defaults to "default"
 - output-directory: Optional name of the build/output directory. Defaults to "./build"
 
-### `gonz.serve` [output-directory]
+### `gonz.serve` [output-directory] [port]
 
 Serves the built site for local development.
 
 Arguments:
 - output-directory: Optional name of the build/output directory to serve files from. Defaults to "./build"
+- port: Optional port of the http server, defaults to 4000.
 
 ### `gonz.purge [output-directory]`
 
