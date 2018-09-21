@@ -14,6 +14,7 @@ defmodule Mix.Tasks.Gonz.Purge do
       Gonz.Site.posts_dir(),
       Gonz.Site.pages_dir(),
       Gonz.Site.themes_dir(),
+      Gonz.Site.site_assets_dir(),
       output
     ]
 
@@ -26,6 +27,7 @@ defmodule Mix.Tasks.Gonz.Purge do
         Enum.each(known_stuff, &File.rm_rf/1)
 
       _other ->
+        IO.puts("Skipping purge")
         :ok
     end
   end

@@ -17,18 +17,19 @@ defmodule Gonz.Navigation do
     end)
   end
 
-  def content(candidate_docs, theme, href_prefix, opts \\ [])
-  def content([], _, _, _), do: ""
+  def content(candidate_docs, theme, opts \\ [])
+  def content([], _, _), do: ""
 
-  def content(candidate_docs, theme, href_prefix, opts) do
+  def content(candidate_docs, theme, opts) do
     candidate_docs
     |> docs(opts)
-    |> content_for(theme, href_prefix)
+    |> content_for(theme)
   end
 
-  def content_for(nav_docs, theme, href_prefix) do
+  def content_for(nav_docs, theme) do
+    # TODO: remove href_prefix completely from these assigns.
     with {:ok, nav_template} <- template(theme),
-         assigns <- [items: nav_docs, href_prefix: href_prefix] do
+         assigns <- [items: nav_docs, href_prefix: "/"] do
       EEx.eval_string(nav_template, assigns: assigns)
     end
   end
