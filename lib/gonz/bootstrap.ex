@@ -44,6 +44,10 @@ defmodule Gonz.Bootstrap do
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="generator" content="Gonz" />
 
+        <!-- Thanks to https://webbkoll.dataskydd.net/ -->
+        <meta name="referrer" content="no-referrer" /> <!-- Referrer Policy -->
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'" /> <!-- Content Security Policy -->
+
         <%= @css %>
         <%= @js %>
       </head>
