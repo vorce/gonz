@@ -11,7 +11,7 @@ defmodule Mix.Tasks.Gonz.Serve do
     Application.start(:plug)
     IO.puts("Starting web server. Site at http://localhost:#{port}/ serving files from dir: #{build_dir}")
 
-    {:ok, _} = Plug.Adapters.Cowboy2.http(Gonz.Plug.Site, [build_dir: build_dir], [port: port])
+    {:ok, _} = Plug.Adapters.Cowboy2.http(Gonz.Plug.Site, [build_dir: build_dir], port: port)
 
     :timer.sleep(:infinity)
   end

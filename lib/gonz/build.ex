@@ -58,12 +58,7 @@ defmodule Gonz.Build do
          {:ok, layout_template} <- Gonz.Site.template(theme),
          # This is really awkward..
          asset_dir <- dir |> Path.split() |> Enum.take(2) |> Path.join(),
-         layout_assigns <- [
-           content: doc_content,
-           navigation: navigation,
-           js: Gonz.Build.Asset.js(asset_dir),
-           css: Gonz.Build.Asset.css(asset_dir)
-         ],
+         layout_assigns <- Gonz.Layout.assigns(doc_assigns[:front_matter], doc_content, navigation, asset_dir),
          final_content <- EEx.eval_string(layout_template, assigns: layout_assigns) do
       File.write(dir <> "/#{doc.filename}", final_content)
     end

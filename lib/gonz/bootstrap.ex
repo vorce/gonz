@@ -43,6 +43,7 @@ defmodule Gonz.Bootstrap do
         <title>#{name}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="generator" content="Gonz" />
+        <meta name="Description" content="<%= @meta.description %>">
 
         <!-- Thanks to https://webbkoll.dataskydd.net/ -->
         <meta name="referrer" content="no-referrer" /> <!-- Referrer Policy -->
