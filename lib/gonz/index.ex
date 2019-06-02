@@ -3,6 +3,9 @@ defmodule Gonz.Index do
   Index page(s)
   """
 
+  alias Gonz.Layout
+  alias Gonz.Markdown.FrontMatter
+
   def create_html({posts, index_page_nr}, index_dir, theme, opts) do
     navigation = Keyword.get(opts, :navigation, "")
     last_page? = Keyword.get(opts, :last_page, false)
@@ -14,12 +17,7 @@ defmodule Gonz.Index do
     with {:ok, index_template} <- template(theme),
          index_content <- EEx.eval_string(index_template, assigns: index_assigns),
          {:ok, layout_template} <- Gonz.Site.template(theme),
-         layout_assigns <- [
-           content: index_content,
-           navigation: navigation,
-           js: Gonz.Build.Asset.js(index_dir),
-           css: Gonz.Build.Asset.css(index_dir)
-         ],
+         layout_assigns <- Layout.assigns(%FrontMatter{}, index_content, navigation, index_dir),
          final_content <- EEx.eval_string(layout_template, assigns: layout_assigns) do
       File.write("#{index_dir}/#{file_name(index_page_nr)}", final_content)
     end
