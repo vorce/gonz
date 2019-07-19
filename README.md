@@ -148,4 +148,4 @@ I looked closer at the github page and noticed that the project was a bit abando
 ## Upgrading themes from 2.x to 3.x
 
 1. Change from Document.category to Document.item
-2. Change `nav_item: true` to `categories: [:nam_item]` in front matter
+2. Change `nav_item: true` to `categories: [:nav_item]` in front matter
