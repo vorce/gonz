@@ -84,7 +84,7 @@ defmodule Gonz.Bootstrap do
       <%= Enum.map @posts, fn post ->
         \"\"\"
         <article class="h-entry">
-          <h2 class="p-name"><a href="#\{post.category}/#\{post.filename}">#\{post.markdown.front_matter.title}</a></h2>
+          <h2 class="p-name"><a href="#\{post.type}/#\{post.filename}">#\{post.markdown.front_matter.title}</a></h2>
             <div class="e-content">
               #\{post.html_content}
             </div>
@@ -113,8 +113,8 @@ defmodule Gonz.Bootstrap do
     <nav>
       <ul>
       <%= Enum.map(@items, fn item ->
-        url = if item.category == :posts do
-          "#\{@href_prefix}#\{item.category}/#\{item.filename}"
+        url = if item.type == :posts do
+          "#\{@href_prefix}#\{item.type}/#\{item.filename}"
         else
           "#\{@href_prefix}#\{item.filename}"
         end

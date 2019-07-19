@@ -37,7 +37,7 @@ defmodule Gonz.Navigation do
   def index_doc() do
     %Gonz.Document{
       filename: "index.html",
-      category: :index,
+      type: :index,
       markdown: %Gonz.Markdown{
         front_matter: %Gonz.Markdown.FrontMatter{
           title: "Home",

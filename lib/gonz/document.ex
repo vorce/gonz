@@ -7,26 +7,26 @@ defmodule Gonz.Document do
   defstruct markdown: %Gonz.Markdown{},
             html_content: "",
             filename: "",
-            category: :unknown
+            type: :unknown
 
-  def load(dir, category) do
+  def load(dir, type) do
     with {:ok, files} <- File.ls(dir),
          {:ok, markdowns} <- Gonz.Markdown.parse(files, dir) do
-      from_markdown_files(markdowns, category)
+      from_markdown_files(markdowns, type)
     end
   end
 
-  def from_markdown_files(md_files, category) when is_list(md_files) do
-    result = Enum.map(md_files, fn md_file -> from_markdown_file(md_file, category) end)
+  def from_markdown_files(md_files, type) when is_list(md_files) do
+    result = Enum.map(md_files, fn md_file -> from_markdown_file(md_file, type) end)
     {:ok, result}
   end
 
-  def from_markdown_file(%Gonz.Markdown{} = md_file, category) do
+  def from_markdown_file(%Gonz.Markdown{} = md_file, type) do
     %__MODULE__{
       markdown: md_file,
       html_content: Earmark.as_html!(md_file.content),
-      filename: html_filename(md_file, category),
-      category: category
+      filename: html_filename(md_file, type),
+      type: type
     }
   end
 
@@ -47,7 +47,7 @@ defmodule Gonz.Document do
     Gonz.Site.sanitize_title(md_file.front_matter.title) <> ".html"
   end
 
-  def valid_categories(), do: [:pages, :posts, :drafts, :index]
+  def valid_types(), do: [:pages, :posts, :drafts, :index]
 
   @doc "This determines the available variables in the pages and post theme templates"
   def to_assigns(%__MODULE__{} = doc, content_dir \\ "") do
