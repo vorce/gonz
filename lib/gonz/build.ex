@@ -37,8 +37,8 @@ defmodule Gonz.Build do
          {:ok, page_docs} <- Gonz.Document.load(Gonz.Site.pages_dir(), :pages),
          post_navigation <- Gonz.Navigation.content(page_docs, theme),
          page_navigation <- Gonz.Navigation.content(page_docs, theme),
-         :ok <- write_documents_as_html(posts_output, post_docs, theme, navigation: post_navigation, category: :posts),
-         :ok <- write_documents_as_html(pages_output, page_docs, theme, navigation: page_navigation, category: :pages) do
+         :ok <- write_documents_as_html(posts_output, post_docs, theme, navigation: post_navigation, type: :posts),
+         :ok <- write_documents_as_html(pages_output, page_docs, theme, navigation: page_navigation, type: :pages) do
       index(post_docs, theme, page_navigation, output: output)
     end
   end
@@ -51,10 +51,10 @@ defmodule Gonz.Build do
 
   def write_document_as_html(dir, %Gonz.Document{} = doc, theme, opts \\ []) do
     navigation = Keyword.get(opts, :navigation, "")
-    category = Keyword.get(opts, :category, :pages)
+    type = Keyword.get(opts, :type, :pages)
 
     with doc_assigns <- Gonz.Document.to_assigns(doc),
-         {:ok, doc_content} <- category_content(theme, category, assigns: doc_assigns),
+         {:ok, doc_content} <- type_content(theme, type, assigns: doc_assigns),
          {:ok, layout_template} <- Gonz.Site.template(theme),
          # This is really awkward..
          asset_dir <- dir |> Path.split() |> Enum.take(2) |> Path.join(),
@@ -66,7 +66,7 @@ defmodule Gonz.Build do
 
   def default_output_dir(), do: "./build"
 
-  def category_content(theme, :pages, opts) do
+  def type_content(theme, :pages, opts) do
     case Gonz.Page.template(theme) do
       {:ok, page_template} ->
         {:ok, EEx.eval_string(page_template, opts)}
@@ -76,7 +76,7 @@ defmodule Gonz.Build do
     end
   end
 
-  def category_content(theme, :posts, opts) do
+  def type_content(theme, :posts, opts) do
     case Gonz.Post.template(theme) do
       {:ok, post_template} ->
         {:ok, EEx.eval_string(post_template, opts)}

@@ -4,8 +4,8 @@ defmodule Gonz.MixProject do
   def project do
     [
       app: :gonz,
-      version: "2.2.0",
-      elixir: "~> 1.6",
+      version: "3.0.0",
+      elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),

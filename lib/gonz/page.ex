@@ -10,17 +10,17 @@ defmodule Gonz.Page do
   end
 
   def new(title, opts) do
-    nav_item = Keyword.get(opts, :nav_item?, false)
     description = Keyword.get(opts, :description, "A dull page")
     content = Keyword.get(opts, :content, "This is the #{title} page")
     created_at = Keyword.get(opts, :created_at, Gonz.now_iso8601())
+    categories = Keyword.get(opts, :categories, [])
 
     """
     ---
     %{
       title: "#{title}",
       description: "#{description}",
-      nav_item: #{nav_item},
+      categories: #{inspect(categories)},
       created_at: "#{created_at}"
     }
     ---

@@ -43,8 +43,9 @@ Some things I've had in mind while hacking on gonz:
 
 - Write pages and posts in Markdown
 - "Themes" with EEx templates
-- A page can be marked as a navigation item, which can be handled in the templates
 - Front matter is specified as an elixir map
+- You can put categories on pages/posts, then themes can handle them in whatever way they wish.
+- There is a special category `:nav_item` that will enable themes to handle some pages as navigation items.
 
 ## Mix tasks
 
