@@ -144,3 +144,8 @@ I looked closer at the github page and noticed that the project was a bit abando
 - Rethink code structure, can simplify a lot of things and make it more consistent I think.
 - Low hanging speed ups (Task.async?)
 - Assets. Right now it's all or nothing. What if I want to publish a separate page that needs some assets that nothing else needs?
+
+## Upgrading themes from 2.x to 3.x
+
+1. Change from Document.category to Document.item
+2. Change `nav_item: true` to `categories: [:nam_item]` in front matter
