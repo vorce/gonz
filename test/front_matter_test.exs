@@ -15,7 +15,6 @@ defmodule Gonz.FrontMatterTest do
       assert FrontMatter.parse(front_matter_string) == %Gonz.Markdown.FrontMatter{
                created_at: created_at,
                description: "",
-               nav_item: false,
                title: title,
                categories: [:nav_item, "foo"]
              }

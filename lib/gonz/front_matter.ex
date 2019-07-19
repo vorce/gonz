@@ -11,8 +11,7 @@ defmodule Gonz.Markdown.FrontMatter do
   defstruct title: "",
             description: "",
             created_at: nil,
-            categories: [],
-            nav_item: false
+            categories: []
 
   def parse(front_matter) when is_binary(front_matter) do
     with {map, _} <- Code.eval_string(front_matter) do
@@ -20,8 +19,7 @@ defmodule Gonz.Markdown.FrontMatter do
         title: map.title,
         description: Map.get(map, :description, ""),
         created_at: map.created_at,
-        categories: Map.get(map, :categories, []),
-        nav_item: Map.get(map, :nav_item, false)
+        categories: Map.get(map, :categories, [])
       }
     end
   end

@@ -27,7 +27,7 @@ defmodule Gonz.Bootstrap do
       There is also code snippet support, and most other things you expect:
 
       ```elixir
-      Gonz.Post.create("Mypage", nav_item?: true, content: "Yo!")
+      Gonz.Post.create("Mypage", categories: [:nav_item, :foo, "bar"], content: "Yo!")
       ```
 
       ![The Gonz](https://media.giphy.com/media/gqG3dwMXRBaBq/giphy.gif)

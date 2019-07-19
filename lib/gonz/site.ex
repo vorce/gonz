@@ -8,7 +8,12 @@ defmodule Gonz.Site do
     with :ok <- create_default_theme(name),
          :ok <- create_content_dirs(),
          :ok <- Gonz.Page.create("Hello"),
-         :ok <- Gonz.Page.create("About", nav_item?: true, content: "Link to non nav page: [hello](hello.html)"),
+         :ok <-
+           Gonz.Page.create(
+             "About",
+             categories: [:nav_item, :about],
+             content: "Link to non nav page: [hello](hello.html)"
+           ),
          :ok <- Gonz.Bootstrap.example_post(name),
          :ok <- Gonz.Post.create("My older post", created_at: "2018-08-18T09:48:34.117782Z") do
       update_gitignore()

@@ -11,7 +11,7 @@ defmodule Gonz.PageTest do
       assert %Gonz.Markdown{
                content: "This is the Böring page\n",
                front_matter: %Gonz.Markdown.FrontMatter{
-                 nav_item: false,
+                 categories: [],
                  title: ^title
                }
              } = Gonz.Markdown.parse(new_page)

@@ -11,7 +11,7 @@ defmodule Gonz.Navigation do
     extra_docs = if include_index, do: [index_doc()], else: []
 
     (extra_docs ++ candidate_docs)
-    |> Enum.filter(fn doc -> doc.markdown.front_matter.nav_item == true end)
+    |> Enum.filter(fn doc -> Enum.member?(doc.markdown.front_matter.categories, :nav_item) end)
     |> Enum.sort(fn a, b ->
       a.filename >= b.filename
     end)
@@ -41,7 +41,7 @@ defmodule Gonz.Navigation do
       markdown: %Gonz.Markdown{
         front_matter: %Gonz.Markdown.FrontMatter{
           title: "Home",
-          nav_item: true
+          categories: [:home, :nav_item]
         }
       }
     }
