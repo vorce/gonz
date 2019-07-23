@@ -15,7 +15,7 @@ Static site generator. **Heavily** inspired by Obelisk (thanks for a great proje
 ```elixir
 defp deps do
   [
-    {:gonz, "~> 2.2"}
+    {:gonz, "~> 3.0"}
   ]
 end
 ```
