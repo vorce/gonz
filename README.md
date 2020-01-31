@@ -6,11 +6,15 @@
 
 > I can write anything and just put it in a zine, and then it's out there. It is like blogging but on paper. It is what I started to do before the computers were all popular.
 
-Static site generator. **Heavily** inspired by Obelisk (thanks for a great project!).
+Static site generator. **Heavily** inspired by [Obelisk](https://github.com/BennyHallett/obelisk) (thanks for a great project!).
 
 ## Quick start
 
+Start a new elixir project:
+
 `mix new mysite`
+
+Add gonz dependency:
 
 ```elixir
 defp deps do
@@ -20,6 +24,8 @@ defp deps do
 end
 ```
 
+Use gonz to scaffold your site skeleton:
+
     mix deps.get
     mix deps.compile
     mix gonz.new MyAwesomeSite
@@ -27,6 +33,8 @@ end
     mix gonz.serve
 
 Open [http://localhost:4000/](http://localhost:4000/) in your browser.
+
+Now you probably want to start editing the default theme (or create a new one). See [my own personal site](https://github.com/vorce/forvillelser/tree/master/themes/forvillelser) for an example.
 
 ## Goals
 
@@ -142,7 +150,7 @@ I looked closer at the github page and noticed that the project was a bit abando
 ## Todo
 
 - What about drafts..
-- Rethink code structure, can simplify a lot of things and make it more consistent I think.
+- Rethink code structure, can simplify a lot of things and make it more consistent I think. The clarity bullet in the goals section is not quite there yet :)
 - Low hanging speed ups (Task.async?)
 - Assets. Right now it's all or nothing. What if I want to publish a separate page that needs some assets that nothing else needs?
 
