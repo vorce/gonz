@@ -27,7 +27,7 @@ defmodule Gonz.Build do
   end
 
   @doc "Builds the static site html files from markdown files"
-  def site(theme, output) do
+  def site(theme, output, opts \\ []) do
     posts_output = posts_build_dir(output)
     pages_output = pages_build_dir(output)
 
@@ -39,7 +39,7 @@ defmodule Gonz.Build do
          page_navigation <- Gonz.Navigation.content(page_docs, theme),
          :ok <- write_documents_as_html(posts_output, post_docs, theme, navigation: post_navigation, type: :posts),
          :ok <- write_documents_as_html(pages_output, page_docs, theme, navigation: page_navigation, type: :pages) do
-      index(post_docs, theme, page_navigation, output: output)
+      index(post_docs, theme, page_navigation, Keyword.merge(opts, output: output))
     end
   end
 

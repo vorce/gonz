@@ -3,10 +3,14 @@ defmodule Mix.Tasks.Gonz.Serve do
   Starts a local web server to serve the built site
   """
 
-  def run([]), do: run(["build", "4000"])
+  @default_port "4000"
 
-  def run([build_dir, port_str]) do
-    port = String.to_integer(port_str)
+  def run([]), do: run(["build", @default_port])
+
+  def run([build_dir]), do: run([build_dir, @default_port])
+
+  def run([build_dir, port_input]) do
+    port = String.to_integer(port_input)
     Application.start(:cowboy)
     Application.start(:plug)
     IO.puts("Starting web server. Site at http://localhost:#{port}/ serving files from dir: #{build_dir}")

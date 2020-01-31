@@ -15,7 +15,7 @@ Static site generator. **Heavily** inspired by Obelisk (thanks for a great proje
 ```elixir
 defp deps do
   [
-    {:gonz, "~> 3.0"}
+    {:gonz, "~> 3.1"}
   ]
 end
 ```
@@ -67,13 +67,14 @@ Example: `mix gonz.post "My amazing post about Things"`
 Arguments:
 - post-title: Required title of the post
 
-### `gonz.build [theme-name] [output-directory]`
+### `gonz.build [theme-name] [output-directory] [posts-per-page]`
 
 Builds the site.
 
 Arguments:
 - theme-name: Optional name of the theme to use, defaults to "default"
 - output-directory: Optional name of the build/output directory. Defaults to "./build"
+- posts-per-page: Optional number of pages per index page. Defaults to 10.
 
 ### `gonz.serve` [output-directory] [port]
 
@@ -110,7 +111,7 @@ The exact API for themes are subject to change. The available data for the theme
 
 #### Building your site with a non-default theme
 
-**If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename build`**
+**If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename build 10`**
 
 If this gets repetitive I suggest you create a target in a Makefile.
 
