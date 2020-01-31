@@ -6,19 +6,25 @@
 
 > I can write anything and just put it in a zine, and then it's out there. It is like blogging but on paper. It is what I started to do before the computers were all popular.
 
-Static site generator. **Heavily** inspired by Obelisk (thanks for a great project!).
+Static site generator. **Heavily** inspired by [Obelisk](https://github.com/BennyHallett/obelisk) (thanks for a great project!).
 
 ## Quick start
 
+Start a new elixir project:
+
 `mix new mysite`
+
+Add gonz dependency:
 
 ```elixir
 defp deps do
   [
-    {:gonz, "~> 3.0"}
+    {:gonz, "~> 3.1"}
   ]
 end
 ```
+
+Use gonz to scaffold your site skeleton:
 
     mix deps.get
     mix deps.compile
@@ -27,6 +33,8 @@ end
     mix gonz.serve
 
 Open [http://localhost:4000/](http://localhost:4000/) in your browser.
+
+Now you probably want to start editing the default theme (or create a new one). See [my own personal site](https://github.com/vorce/forvillelser/tree/master/themes/forvillelser) for an example.
 
 ## Goals
 
@@ -67,13 +75,14 @@ Example: `mix gonz.post "My amazing post about Things"`
 Arguments:
 - post-title: Required title of the post
 
-### `gonz.build [theme-name] [output-directory]`
+### `gonz.build [theme-name] [output-directory] [posts-per-page]`
 
 Builds the site.
 
 Arguments:
 - theme-name: Optional name of the theme to use, defaults to "default"
 - output-directory: Optional name of the build/output directory. Defaults to "./build"
+- posts-per-page: Optional number of pages per index page. Defaults to 10.
 
 ### `gonz.serve` [output-directory] [port]
 
@@ -110,7 +119,7 @@ The exact API for themes are subject to change. The available data for the theme
 
 #### Building your site with a non-default theme
 
-**If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename build`**
+**If you use a custom theme, don't forget to specify the name of it when you build your site, ex: `mix gonz.build mythemename build 10`**
 
 If this gets repetitive I suggest you create a target in a Makefile.
 
@@ -141,7 +150,7 @@ I looked closer at the github page and noticed that the project was a bit abando
 ## Todo
 
 - What about drafts..
-- Rethink code structure, can simplify a lot of things and make it more consistent I think.
+- Rethink code structure, can simplify a lot of things and make it more consistent I think. The clarity bullet in the goals section is not quite there yet :)
 - Low hanging speed ups (Task.async?)
 - Assets. Right now it's all or nothing. What if I want to publish a separate page that needs some assets that nothing else needs?
 
