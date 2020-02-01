@@ -9,9 +9,4 @@ defmodule Gonz.BuildTest do
       assert Build.pages_build_dir(output) == output
     end
   end
-
-  describe "write_document_as_html/4" do
-    test "" do
-    end
-  end
 end

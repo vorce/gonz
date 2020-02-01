@@ -14,19 +14,37 @@ defmodule Gonz.Build.Asset do
   end
 
   def css_files(output) do
-    File.ls!("./#{output}/assets/css")
-    |> Enum.filter(fn file -> String.ends_with?(file, [".css"]) end)
-    |> Enum.sort()
-    |> Enum.map(&"/assets/css/#{&1}")
-    |> Enum.filter(&(!File.dir?("./#{output}/#{&1}")))
+    path = "./#{output}/assets/css"
+
+    case File.ls(path) do
+      {:ok, files} ->
+        files
+        |> Enum.filter(fn file -> String.ends_with?(file, [".css"]) end)
+        |> Enum.sort()
+        |> Enum.map(&"/assets/css/#{&1}")
+        |> Enum.filter(&(!File.dir?("./#{output}/#{&1}")))
+
+      error ->
+        IO.puts("Unable to list files in #{path}: #{inspect(error)} - skipping CSS assets")
+        []
+    end
   end
 
   def js_files(output) do
-    File.ls!("./#{output}/assets/js")
-    |> Enum.filter(fn file -> String.ends_with?(file, [".js"]) end)
-    |> Enum.sort()
-    |> Enum.map(&"/assets/js/#{&1}")
-    |> Enum.filter(&(!File.dir?("./#{output}/#{&1}")))
+    path = "./#{output}/assets/js"
+
+    case File.ls(path) do
+      {:ok, files} ->
+        files
+        |> Enum.filter(fn file -> String.ends_with?(file, [".js"]) end)
+        |> Enum.sort()
+        |> Enum.map(&"/assets/js/#{&1}")
+        |> Enum.filter(&(!File.dir?("./#{output}/#{&1}")))
+
+      error ->
+        IO.puts("Unable to list files in #{path}: #{inspect(error)} - skipping JS assets")
+        []
+    end
   end
 
   def css(output) do
