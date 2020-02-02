@@ -22,7 +22,7 @@ defmodule Gonz.Build do
     |> Enum.each(fn docs ->
       {_, page_nr} = docs
       last_page = page_nr == total_chunks - 1
-      Gonz.Index.create_html(docs, output_dir, theme, last_page: last_page, navigation: navigation)
+      Gonz.Index.write_html(docs, output_dir, theme, last_page: last_page, navigation: navigation)
     end)
   end
 
