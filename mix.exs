@@ -23,8 +23,8 @@ defmodule Gonz.MixProject do
     [
       # convert markdown to html
       {:earmark, "~> 1.2"},
-      {:plug, "~> 1.6"},
-      {:cowboy, "~> 2.4"},
+      {:plug, "~> 1.10"},
+      {:cowboy, "~> 2.8"},
 
       # Needed because elixir 1.6
       {:ex_doc, "~> 0.21.1", only: :dev}
