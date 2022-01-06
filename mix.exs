@@ -27,7 +27,7 @@ defmodule Gonz.MixProject do
       {:cowboy, "~> 2.8"},
 
       # Needed because elixir 1.6
-      {:ex_doc, "~> 0.21.1", only: :dev}
+      {:ex_doc, "~> 0.26.0", only: :dev}
     ]
   end
 
