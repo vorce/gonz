@@ -11,11 +11,11 @@ defmodule Mix.Tasks.Gonz.Serve do
 
   def run([build_dir, port_input]) do
     port = String.to_integer(port_input)
-    Application.start(:cowboy)
-    Application.start(:plug)
+    Application.start(:telemetry)
+
     IO.puts("Starting web server. Site at http://localhost:#{port}/ serving files from dir: #{build_dir}")
 
-    {:ok, _} = Plug.Adapters.Cowboy2.http(Gonz.Plug.Site, [build_dir: build_dir], port: port)
+    {:ok, _} = Plug.Cowboy.http(Gonz.Plug.Site, [build_dir: build_dir], port: port)
 
     :timer.sleep(:infinity)
   end
