@@ -5,7 +5,7 @@ defmodule Gonz.MixProject do
     [
       app: :gonz,
       version: "3.1.1",
-      elixir: "~> 1.9",
+      elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
@@ -21,13 +21,12 @@ defmodule Gonz.MixProject do
 
   defp deps do
     [
-      # convert markdown to html
-      {:earmark, "~> 1.2"},
+      {:earmark, "~> 1.4"},
+      {:ranch, "~> 1.8"},
       {:plug, "~> 1.10"},
       {:cowboy, "~> 2.8"},
-
-      # Needed because elixir 1.6
-      {:ex_doc, "~> 0.21.1", only: :dev}
+      {:plug_cowboy, "~> 2.0"},
+      {:ex_doc, "~> 0.26"}
     ]
   end
 
