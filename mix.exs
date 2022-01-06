@@ -4,7 +4,7 @@ defmodule Gonz.MixProject do
   def project do
     [
       app: :gonz,
-      version: "3.1.1",
+      version: "4.0.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
