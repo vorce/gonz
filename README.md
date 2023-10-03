@@ -1,6 +1,6 @@
 [![white flower daisy fing shawiwey by Mark Gonzales](white_flower_daisy_fing_shawiwey.jpg)](https://hvw8.com/exhibitions/artists/mark-gonzales)
 
-[![Hex.pm](https://img.shields.io/hexpm/v/gonz.svg)](https://hex.pm/packages/gonz) ![Build status](https://github.com/vorce/gonz/actions/workflows/action.yml/badge.svg) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=vorce/gonz)](https://dependabot.com)
+[![Hex.pm](https://img.shields.io/hexpm/v/gonz.svg)](https://hex.pm/packages/gonz) ![Build status](https://github.com/vorce/gonz/actions/workflows/action.yml/badge.svg) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=vorce/gonz)](https://dependabot.com) [![Casual Maintenance Intended](https://casuallymaintained.tech/badge.svg)](https://casuallymaintained.tech/)
 
 # gonz
 
